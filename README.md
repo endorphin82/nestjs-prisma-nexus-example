@@ -7,7 +7,7 @@
 [linux-image]: https://img.shields.io/travis/nestjs/nest/master.svg?label=linux
 [linux-url]: https://travis-ci.org/nestjs/nest
   
-  <p align="center">A progressive <a href="http://nodejs.org" target="blank">Node.js</a> framework for building efficient and scalable server-side applications, heavily inspired by <a href="https://angular.io" target="blank">Angular</a>.</p>
+  <p align="center">Example of usage Prisma, Nexus and Nexus-prisma with NestJS.</p>
     <p align="center">
 <a href="https://www.npmjs.com/~nestjscore"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
 <a href="https://www.npmjs.com/~nestjscore"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
@@ -27,6 +27,12 @@
 ## Description
 
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+
+[Prisma](https://github.com/prisma/prisma) for database modelling, migration and type-safe access
+
+[Nexus](https://github.com/graphql-nexus/schema) for code first graphql schema modeling
+
+[NexusPrisma](https://github.com/graphql-nexus/nexus-schema-plugin-prisma) for generate graphql crud operations integrated with prisma
 
 ## Installation
 
