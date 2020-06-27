@@ -8,7 +8,7 @@ generator client {
 }
 
 model User {
-  id        Int         @id
+  id        String              @id @default(cuid())
   createdAt DateTime    @default(now())
   updatedAt DateTime    @updatedAt
   name      String?
@@ -19,24 +19,24 @@ model User {
 }
 
 model Account {
-  id            Int           @id
+  id            String              @id @default(cuid())
   createdAt     DateTime      @default(now())
   updatedAt     DateTime      @updatedAt
   name          String
   currency      Currency      @default(USD)
   balance       Float         @default(0)
   user          User          @relation(fields:[userId])
-  userId        Int           
+  userId        String
   transactions  Transaction[]
 }
 
 model Transaction {
-  id        Int      @id
+  id        String              @id @default(cuid())
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   amount    Float
   account   Account  @relation(fields: [accountId])
-  accountId Int
+  accountId String
 }
 
 enum UserRole {
