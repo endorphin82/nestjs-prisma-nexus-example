@@ -8,7 +8,7 @@ type Query {
 }
 
 type User {
-  id: ID!
+  id: String!
 }
 
 input UserWhereUniqueInput {

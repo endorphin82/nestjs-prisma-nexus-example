@@ -3,35 +3,22 @@ import { Injectable } from '@nestjs/common';
 import { GqlOptionsFactory, GqlModuleOptions } from '@nestjs/graphql';
 
 import { nexusPrismaPlugin } from 'nexus-prisma';
-import { makeSchema, queryType, stringArg, objectType } from '@nexus/schema';
+import { makeSchema } from '@nexus/schema';
 
 import { PrismaService } from '../services/prisma.service';
+
+import * as types from './types';
 
 @Injectable()
 export class GraphqlConfigService implements GqlOptionsFactory {
   constructor (
     private readonly prisma: PrismaService,
   ) {}
+
   async createGqlOptions(): Promise<GqlModuleOptions> {
 
-    const User = objectType({
-      name: 'User',
-      definition(t) {
-        t.id('id');
-      }
-    })
-    const Query = queryType({
-      definition(t) {
-        t.crud.users();
-        t.string("hello", {
-          args: { name: stringArg({ nullable: true }) },
-          resolve: (parent, { name }) => `Hello ${name || "World"}!`,
-        });
-      },
-    });
-    
     const schema = makeSchema({
-      types: [Query, User],
+      types: [Object.values(types).map(item => item(this.prisma))],
       plugins: [nexusPrismaPlugin({
         experimentalCRUD: true,
         outputs: {
