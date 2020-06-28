@@ -6,19 +6,18 @@ import { nexusPrismaPlugin } from 'nexus-prisma';
 import { makeSchema } from '@nexus/schema';
 
 import { PrismaService } from '../services/prisma.service';
-
-import * as types from './types';
+import { UsersResolver } from '../users/users.definition';
 
 @Injectable()
 export class GraphqlConfigService implements GqlOptionsFactory {
   constructor (
-    private readonly prisma: PrismaService,
+    private readonly prisma: PrismaService,    
+    private readonly users: UsersResolver,
   ) {}
 
   async createGqlOptions(): Promise<GqlModuleOptions> {
-
     const schema = makeSchema({
-      types: [Object.values(types).map(item => item(this.prisma))],
+      types: [...this.users.getSchema()],
       plugins: [nexusPrismaPlugin({
         experimentalCRUD: true,
         outputs: {
