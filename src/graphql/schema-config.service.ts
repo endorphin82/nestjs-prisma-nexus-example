@@ -5,7 +5,7 @@ import { GqlOptionsFactory, GqlModuleOptions } from '@nestjs/graphql';
 import { nexusPrismaPlugin } from 'nexus-prisma';
 import { makeSchema } from '@nexus/schema';
 
-import { PrismaService } from '../services/prisma.service';
+import { PrismaService } from '../prisma/prisma.service';
 import { UsersResolver } from '../users/users.definition';
 
 @Injectable()
