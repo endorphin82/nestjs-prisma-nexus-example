@@ -21,18 +21,18 @@ export class UsersResolver {
   private query = extendType({
     type: 'Query',
     definition: (t) => {
-        t.field('users', {
-          type: 'User',
-          list: true,
-          args: { name: stringArg({ nullable: true }) },
-          resolve: async (parent, { name }) => {
-            const users = await this.users.getUsers({ name });
+      t.field('users', {
+        type: 'User',
+        list: true,
+        args: { name: stringArg({ nullable: true }) },
+        resolve: async (parent, { name }) => {
+          const users = await this.users.getUsers({ name });
 
-            return users;
-          },
-        });
+          return users;
+        },
+      });
     },
-  });  
+  });
 
   public getSchema(): any {
     return [this.userType, this.query];

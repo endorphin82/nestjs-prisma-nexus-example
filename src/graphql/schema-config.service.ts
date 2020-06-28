@@ -11,7 +11,7 @@ import { UsersResolver } from '../users/users.definition';
 @Injectable()
 export class GraphqlConfigService implements GqlOptionsFactory {
   constructor (
-    private readonly prisma: PrismaService,    
+    private readonly prisma: PrismaService,
     private readonly users: UsersResolver,
   ) {}
 
@@ -20,9 +20,7 @@ export class GraphqlConfigService implements GqlOptionsFactory {
       types: [...this.users.getSchema()],
       plugins: [nexusPrismaPlugin({
         experimentalCRUD: true,
-        outputs: {
-          typegen: path.join(__dirname, "../generated/nexus-prisma-typegen.ts"), 
-        }
+        outputs: { typegen: path.join(__dirname, '../generated/nexus-prisma-typegen.ts') },
       })],
       outputs: {
         schema: path.join(__dirname, '../generated/schema.graphql'),
@@ -31,9 +29,9 @@ export class GraphqlConfigService implements GqlOptionsFactory {
     });
 
     return {
+      schema,
       debug: true,
       playground: true,
-      schema,
       context: ({ req, res }): any => ({ req, res, prisma: this.prisma }),
     };
   }

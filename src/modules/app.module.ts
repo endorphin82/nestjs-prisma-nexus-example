@@ -10,7 +10,7 @@ import { GraphqlConfigService } from '../graphql/schema-config.service';
   imports: [
     GraphQLModule.forRootAsync({
       useClass: GraphqlConfigService,
-      imports: [PrismaModule, UsersModule]
+      imports: [PrismaModule, UsersModule],
     }),
     PrismaModule,
   ],
