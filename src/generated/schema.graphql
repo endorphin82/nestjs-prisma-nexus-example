@@ -3,16 +3,11 @@
 
 
 type Query {
-  hello(name: String): String!
-  users(after: UserWhereUniqueInput, before: UserWhereUniqueInput, first: Int, last: Int): [User!]!
+  users(name: String): [User!]!
 }
 
 type User {
   email: String
   id: String!
-}
-
-input UserWhereUniqueInput {
-  email: String
-  id: String
+  name: String
 }

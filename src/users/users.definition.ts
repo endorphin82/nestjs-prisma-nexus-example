@@ -14,19 +14,21 @@ export class UsersResolver {
     definition(t) {
       t.model.id();
       t.model.email();
+      t.model.name();
     },
   });
 
   private query = extendType({
     type: 'Query',
     definition: (t) => {
-        t.crud.users(); 
-        t.string("hello", {
+        t.field('users', {
+          type: 'User',
+          list: true,
           args: { name: stringArg({ nullable: true }) },
           resolve: async (parent, { name }) => {
-            const user = await this.users.getUsers();
+            const users = await this.users.getUsers({ name });
 
-            return JSON.stringify(user);
+            return users;
           },
         });
     },

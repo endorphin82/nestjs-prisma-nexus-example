@@ -10,10 +10,14 @@ export class UsersService {
     private readonly prisma: PrismaService,
   ) {}
 
-  async getUsers(): Promise<User[]> {
-    const users = await this.prisma.user.findMany();
+  async getUsers({ name }: GetUsersArgs): Promise<User[]> {
+    const users = await this.prisma.user.findMany({ where: { name } });
 
     return users;
   }
 
+}
+
+interface GetUsersArgs {
+  name: string;
 }
