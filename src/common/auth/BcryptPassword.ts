@@ -1,4 +1,4 @@
-import bcrypt from 'bcrypt';
+import * as bcrypt from 'bcrypt';
 import { IPassword } from './IPassword';
 
 interface IBcryptPasswordProps {
@@ -24,5 +24,11 @@ export class BcryptPassword implements IPassword {
     const password = new BcryptPassword(defaultValues);
 
     return password;
+  }
+
+  public async compare(password): Promise<boolean> {
+    const isEqual = await bcrypt.compare(this.props.password, password);
+
+    return isEqual;
   }
 }

@@ -3,7 +3,7 @@
  * Do not make changes to this file directly
  */
 
-import * as Context from "../graphql/context"
+import * as Context from "../graphql/schema-config.service"
 
 
 
@@ -27,6 +27,16 @@ export interface NexusGenInputs {
     password: string; // String!
     roles: NexusGenEnums['UserRole'][]; // [UserRole!]!
   }
+  SignInInput: { // input type
+    email: string; // String!
+    password: string; // String!
+  }
+  SignUpInput: { // input type
+    email: string; // String!
+    firstName?: string | null; // String
+    lastName?: string | null; // String
+    password: string; // String!
+  }
 }
 
 export interface NexusGenEnums {
@@ -34,6 +44,10 @@ export interface NexusGenEnums {
 }
 
 export interface NexusGenRootTypes {
+  AuthPayload: { // root type
+    token: string; // String!
+    user: NexusGenRootTypes['User']; // User!
+  }
   Mutation: {};
   Query: {};
   User: { // root type
@@ -51,14 +65,23 @@ export interface NexusGenRootTypes {
 
 export interface NexusGenAllTypes extends NexusGenRootTypes {
   CreateUserInput: NexusGenInputs['CreateUserInput'];
+  SignInInput: NexusGenInputs['SignInInput'];
+  SignUpInput: NexusGenInputs['SignUpInput'];
   UserRole: NexusGenEnums['UserRole'];
 }
 
 export interface NexusGenFieldTypes {
+  AuthPayload: { // field return type
+    token: string; // String!
+    user: NexusGenRootTypes['User']; // User!
+  }
   Mutation: { // field return type
     createUser: NexusGenRootTypes['User']; // User!
+    signIn: NexusGenRootTypes['AuthPayload']; // AuthPayload!
+    signUp: NexusGenRootTypes['AuthPayload']; // AuthPayload!
   }
   Query: { // field return type
+    me: NexusGenRootTypes['User'] | null; // User
     users: NexusGenRootTypes['User'][]; // [User!]!
   }
   User: { // field return type
@@ -74,8 +97,17 @@ export interface NexusGenArgTypes {
     createUser: { // args
       data: NexusGenInputs['CreateUserInput']; // CreateUserInput!
     }
+    signIn: { // args
+      data: NexusGenInputs['SignInInput']; // SignInInput!
+    }
+    signUp: { // args
+      data: NexusGenInputs['SignUpInput']; // SignUpInput!
+    }
   }
   Query: {
+    me: { // args
+      name?: string | null; // String
+    }
     users: { // args
       name?: string | null; // String
     }
@@ -87,9 +119,9 @@ export interface NexusGenAbstractResolveReturnTypes {
 
 export interface NexusGenInheritedFields {}
 
-export type NexusGenObjectNames = "Mutation" | "Query" | "User";
+export type NexusGenObjectNames = "AuthPayload" | "Mutation" | "Query" | "User";
 
-export type NexusGenInputNames = "CreateUserInput";
+export type NexusGenInputNames = "CreateUserInput" | "SignInInput" | "SignUpInput";
 
 export type NexusGenEnumNames = "UserRole";
 

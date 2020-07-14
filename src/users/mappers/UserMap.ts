@@ -35,7 +35,6 @@ export class UserMap {
   }
 
   static toNexus(user: User): NexusGenFieldTypes['User'] {
-    console.log(user);
     return {
       id: user.id.toValue(),
       email: user.email,

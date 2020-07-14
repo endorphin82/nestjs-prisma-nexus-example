@@ -1,4 +1,4 @@
-import isEmail from 'isemail';
+import * as isEmail from 'isemail';
 
 interface IEmailProps {
   email: string;
@@ -16,7 +16,7 @@ export class Email implements IEmailProps {
   }
 
   validate() {
-    if (!isEmail.validate(this.email)) {
+    if (!isEmail.validate(this.props.email)) {
       throw new Error('Incorrect Email');
     }
   }
