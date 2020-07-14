@@ -3,7 +3,7 @@
  * Do not make changes to this file directly
  */
 
-
+import * as Context from "../graphql/context"
 
 
 
@@ -19,17 +19,28 @@ declare global {
 }
 
 export interface NexusGenInputs {
+  CreateUserInput: { // input type
+    email: string; // String!
+    firstName?: string | null; // String
+    lastName?: string | null; // String
+    middleName?: string | null; // String
+    password: string; // String!
+    roles: NexusGenEnums['UserRole'][]; // [UserRole!]!
+  }
 }
 
 export interface NexusGenEnums {
+  UserRole: "ADMIN" | "EMPLOYEE"
 }
 
 export interface NexusGenRootTypes {
+  Mutation: {};
   Query: {};
   User: { // root type
-    email?: string | null; // String
-    id: string; // String!
-    name?: string | null; // String
+    email: string; // String!
+    id: string; // ID!
+    name: string; // String!
+    roles: NexusGenEnums['UserRole'][]; // [UserRole!]!
   }
   String: string;
   Int: number;
@@ -39,20 +50,31 @@ export interface NexusGenRootTypes {
 }
 
 export interface NexusGenAllTypes extends NexusGenRootTypes {
+  CreateUserInput: NexusGenInputs['CreateUserInput'];
+  UserRole: NexusGenEnums['UserRole'];
 }
 
 export interface NexusGenFieldTypes {
+  Mutation: { // field return type
+    createUser: NexusGenRootTypes['User']; // User!
+  }
   Query: { // field return type
     users: NexusGenRootTypes['User'][]; // [User!]!
   }
   User: { // field return type
-    email: string | null; // String
-    id: string; // String!
-    name: string | null; // String
+    email: string; // String!
+    id: string; // ID!
+    name: string; // String!
+    roles: NexusGenEnums['UserRole'][]; // [UserRole!]!
   }
 }
 
 export interface NexusGenArgTypes {
+  Mutation: {
+    createUser: { // args
+      data: NexusGenInputs['CreateUserInput']; // CreateUserInput!
+    }
+  }
   Query: {
     users: { // args
       name?: string | null; // String
@@ -65,11 +87,11 @@ export interface NexusGenAbstractResolveReturnTypes {
 
 export interface NexusGenInheritedFields {}
 
-export type NexusGenObjectNames = "Query" | "User";
+export type NexusGenObjectNames = "Mutation" | "Query" | "User";
 
-export type NexusGenInputNames = never;
+export type NexusGenInputNames = "CreateUserInput";
 
-export type NexusGenEnumNames = never;
+export type NexusGenEnumNames = "UserRole";
 
 export type NexusGenInterfaceNames = never;
 
@@ -78,7 +100,7 @@ export type NexusGenScalarNames = "Boolean" | "Float" | "ID" | "Int" | "String";
 export type NexusGenUnionNames = never;
 
 export interface NexusGenTypes {
-  context: any;
+  context: Context.Context;
   inputTypes: NexusGenInputs;
   rootTypes: NexusGenRootTypes;
   argTypes: NexusGenArgTypes;

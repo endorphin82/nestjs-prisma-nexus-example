@@ -1,0 +1,63 @@
+{
+  "version": "0.3.14-fixed",
+  "steps": [
+    {
+      "tag": "CreateField",
+      "model": "User",
+      "field": "firstName",
+      "type": "String",
+      "arity": "Optional"
+    },
+    {
+      "tag": "CreateField",
+      "model": "User",
+      "field": "middleName",
+      "type": "String",
+      "arity": "Optional"
+    },
+    {
+      "tag": "CreateField",
+      "model": "User",
+      "field": "lastName",
+      "type": "String",
+      "arity": "Optional"
+    },
+    {
+      "tag": "DeleteField",
+      "model": "User",
+      "field": "createdAt"
+    },
+    {
+      "tag": "DeleteField",
+      "model": "User",
+      "field": "updatedAt"
+    },
+    {
+      "tag": "DeleteField",
+      "model": "User",
+      "field": "name"
+    },
+    {
+      "tag": "UpdateField",
+      "model": "User",
+      "field": "email",
+      "arity": "Required"
+    },
+    {
+      "tag": "UpdateField",
+      "model": "User",
+      "field": "password",
+      "arity": "Required"
+    },
+    {
+      "tag": "DeleteField",
+      "model": "Account",
+      "field": "updatedAt"
+    },
+    {
+      "tag": "DeleteField",
+      "model": "Transaction",
+      "field": "updatedAt"
+    }
+  ]
+}

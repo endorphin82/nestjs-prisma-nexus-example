@@ -2,12 +2,31 @@
 ### Do not make changes to this file directly
 
 
+input CreateUserInput {
+  email: String!
+  firstName: String
+  lastName: String
+  middleName: String
+  password: String!
+  roles: [UserRole!]!
+}
+
+type Mutation {
+  createUser(data: CreateUserInput!): User!
+}
+
 type Query {
   users(name: String): [User!]!
 }
 
 type User {
-  email: String
-  id: String!
-  name: String
+  email: String!
+  id: ID!
+  name: String!
+  roles: [UserRole!]!
+}
+
+enum UserRole {
+  ADMIN
+  EMPLOYEE
 }

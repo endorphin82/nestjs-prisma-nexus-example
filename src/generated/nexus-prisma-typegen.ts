@@ -23,28 +23,28 @@ interface PrismaModels {
 interface NexusPrismaInputs {
   Query: {
     users: {
-      filtering: 'id' | 'createdAt' | 'updatedAt' | 'name' | 'accounts' | 'email' | 'password' | 'AND' | 'OR' | 'NOT'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'name' | 'email' | 'password'
+      filtering: 'id' | 'email' | 'password' | 'firstName' | 'middleName' | 'lastName' | 'accounts' | 'AND' | 'OR' | 'NOT'
+      ordering: 'id' | 'email' | 'password' | 'firstName' | 'middleName' | 'lastName'
     }
     accounts: {
-      filtering: 'id' | 'createdAt' | 'updatedAt' | 'name' | 'currency' | 'balance' | 'userId' | 'transactions' | 'AND' | 'OR' | 'NOT' | 'user'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'name' | 'currency' | 'balance' | 'userId'
+      filtering: 'id' | 'createdAt' | 'name' | 'currency' | 'balance' | 'userId' | 'transactions' | 'AND' | 'OR' | 'NOT' | 'user'
+      ordering: 'id' | 'createdAt' | 'name' | 'currency' | 'balance' | 'userId'
     }
     transactions: {
-      filtering: 'id' | 'createdAt' | 'updatedAt' | 'amount' | 'accountId' | 'AND' | 'OR' | 'NOT' | 'account'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'amount' | 'accountId'
+      filtering: 'id' | 'createdAt' | 'amount' | 'accountId' | 'AND' | 'OR' | 'NOT' | 'account'
+      ordering: 'id' | 'createdAt' | 'amount' | 'accountId'
     }
   },
   User: {
     accounts: {
-      filtering: 'id' | 'createdAt' | 'updatedAt' | 'name' | 'currency' | 'balance' | 'userId' | 'transactions' | 'AND' | 'OR' | 'NOT' | 'user'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'name' | 'currency' | 'balance' | 'userId'
+      filtering: 'id' | 'createdAt' | 'name' | 'currency' | 'balance' | 'userId' | 'transactions' | 'AND' | 'OR' | 'NOT' | 'user'
+      ordering: 'id' | 'createdAt' | 'name' | 'currency' | 'balance' | 'userId'
     }
   }
   Account: {
     transactions: {
-      filtering: 'id' | 'createdAt' | 'updatedAt' | 'amount' | 'accountId' | 'AND' | 'OR' | 'NOT' | 'account'
-      ordering: 'id' | 'createdAt' | 'updatedAt' | 'amount' | 'accountId'
+      filtering: 'id' | 'createdAt' | 'amount' | 'accountId' | 'AND' | 'OR' | 'NOT' | 'account'
+      ordering: 'id' | 'createdAt' | 'amount' | 'accountId'
     }
   }
   Transaction: {
@@ -84,18 +84,17 @@ interface NexusPrismaOutputs {
   },
   User: {
     id: 'String'
-    createdAt: 'DateTime'
-    updatedAt: 'DateTime'
-    name: 'String'
-    accounts: 'Account'
     email: 'String'
     password: 'String'
+    firstName: 'String'
+    middleName: 'String'
+    lastName: 'String'
     roles: 'UserRole'
+    accounts: 'Account'
   }
   Account: {
     id: 'String'
     createdAt: 'DateTime'
-    updatedAt: 'DateTime'
     name: 'String'
     currency: 'Currency'
     balance: 'Float'
@@ -106,7 +105,6 @@ interface NexusPrismaOutputs {
   Transaction: {
     id: 'String'
     createdAt: 'DateTime'
-    updatedAt: 'DateTime'
     amount: 'Float'
     account: 'Account'
     accountId: 'String'

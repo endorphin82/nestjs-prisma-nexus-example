@@ -13,6 +13,7 @@ import { GraphqlConfigService } from '../graphql/schema-config.service';
       imports: [PrismaModule, UsersModule],
     }),
     PrismaModule,
+    UsersModule,
   ],
   controllers: [],
   providers: [],
