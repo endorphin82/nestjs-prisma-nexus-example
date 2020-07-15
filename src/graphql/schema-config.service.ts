@@ -13,8 +13,8 @@ import { UserService } from '../users/services/UserService';
 import * as usersSchema from '../users/schema';
 
 import { IUserService } from '../users/services/IUserService';
-import {JWT} from '../common/auth/JWT';
-import {User} from '../users/domain/User';
+import { JWT } from '../common/auth/JWT';
+import { User } from '../users/domain/User';
 
 @Injectable()
 export class GraphqlConfigService implements GqlOptionsFactory {
