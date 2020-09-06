@@ -19,7 +19,7 @@ export const schema = makeSchema({
         alias: 'prismaClient',
       },
       {
-        source: path.join(__dirname, 'schema-config.ts'),
+        source: path.join(__dirname, 'schema-config.service.ts'),
         alias: 'Context',
       },
     ],
