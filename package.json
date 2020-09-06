@@ -7,6 +7,7 @@
   "license": "UNLICENSED",
   "scripts": {
     "1_db:up": "docker-compose up",
+    "generate:nexus": "NODE_ENV=development ts-node --transpile-only -P nexus.tsconfig.json ./src/graphql/schema-config",
     "generate:prisma": "npx prisma generate",
     "prebuild": "rimraf dist",
     "build": "nest build", 
