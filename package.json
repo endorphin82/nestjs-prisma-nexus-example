@@ -6,8 +6,10 @@
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
+    "1_db:up": "docker-compose up",
+    "generate:prisma": "npx prisma generate",
     "prebuild": "rimraf dist",
-    "build": "nest build",
+    "build": "nest build", 
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "ts-node-dev --no-notify --respawn --transpile-only src/main.ts",
     "start:dev": "nest start --watch",
